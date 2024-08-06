@@ -1,0 +1,6 @@
+@InvenTrackCore.Api_HostAddress = http://localhost:5227
+
+GET {{InvenTrackCore.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
