@@ -20,8 +20,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
         {
             var context = new ValidationContext<TRequest>(request);
 
-            var validationResults = await Task.WhenAll(_validators.Select(
-                x => x.ValidateAsync(context, cancellationToken)));
+            var validationResults = await Task.WhenAll(_validators.Select(x => x.ValidateAsync(context, cancellationToken)));
 
             var failures = validationResults
                 .Where(x => x.Errors.Any())
@@ -29,7 +28,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
                 .Select(x => new BaseError()
                 {
                     PropertyName = x.PropertyName,
-                    ErrorMessage = x.ErrorMessage,
+                    ErrorMessage = x.ErrorMessage
                 }).ToList();
 
             if (failures.Any())

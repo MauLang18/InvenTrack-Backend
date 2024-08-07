@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\InvenTrackCore.Application\InvenTrackCore.Application.csproj" />
     <ProjectReference Include="..\InvenTrackCore.Infrastructure\InvenTrackCore.Infrastructure.csproj" />
     <ProjectReference Include="..\InvenTrackCore.Utilities\InvenTrackCore.Utilities.csproj" />

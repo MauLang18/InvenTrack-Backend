@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'maulang18/inventrackcore.api:latest'
-        CONTAINER_NAME_DEV = 'InvenTrackCoreCCDev'z
+        CONTAINER_NAME_DEV = 'InvenTrackCoreCCDev'
         PORT_DEV = '10116'
         PORT_CONTAINER = '8080'
         COMPOSE_NAME = '/home/administrador/docker-compose-customcode.yml'
