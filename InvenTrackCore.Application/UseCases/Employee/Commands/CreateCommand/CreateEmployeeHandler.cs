@@ -26,7 +26,7 @@ public class CreateEmployeeHandler : IRequestHandler<CreateEmployeeCommand, Base
         try
         {
             var employee = _mapper.Map<Entity.Employee>(request);
-            await _unitOfWork.Employee.CrateAsync(employee);
+            await _unitOfWork.Employee.CreateAsync(employee);
             await _unitOfWork.SaveChangesAsync();
 
             response.IsSuccess = true;
