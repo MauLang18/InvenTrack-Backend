@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  inventrackcore.api:
+    image: ${DOCKER_REGISTRY-}inventrackcoreapi
+    build:
+      context: .
+      dockerfile: InvenTrackCore.Api/Dockerfile

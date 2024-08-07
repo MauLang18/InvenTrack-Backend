@@ -23,7 +23,7 @@ pipeline {
                     withSonarQubeEnv('Sonar-Server') {
                         sh '''
                             dotnet sonarscanner begin /k:$SONARQUBE_PROJECT_KEY /d:sonar.host.url=$SONARQUBE_HOST_URL /d:sonar.login=$SONARQUBE_TOKEN /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
-                            dotnet build TrackX.sln
+                            dotnet build InvenTrackCore.sln
                             dotnet sonarscanner end /d:sonar.login=$SONARQUBE_TOKEN
                         '''
                     }
@@ -94,15 +94,24 @@ pipeline {
             when {
                 expression { env.GIT_BRANCH == 'origin/master' }
             }
+            // steps {
+            //     script {
+            //         def devContainerRunning = sh(script: "docker ps -q -f name=${CONTAINER_NAME_DEV}", returnStdout: true).trim()
+            //         if (devContainerRunning) {
+            //             sh "docker stop ${CONTAINER_NAME_DEV} || true"
+            //             sh "docker rm ${CONTAINER_NAME_DEV} || true"
+            //         }
+            //         dir('/home/administrador') {
+            //             sh "docker-compose -f ${COMPOSE_NAME} up -d"
+            //         }
+            //     }
+            // }
             steps {
                 script {
-                    def devContainerRunning = sh(script: "docker ps -q -f name=${CONTAINER_NAME_DEV}", returnStdout: true).trim()
-                    if (devContainerRunning) {
-                        sh "docker stop ${CONTAINER_NAME_DEV} || true"
-                        sh "docker rm ${CONTAINER_NAME_DEV} || true"
-                    }
-                    dir('/home/administrador') {
-                        sh "docker-compose -f ${COMPOSE_NAME} up -d"
+                    if (env.DEV_CONTAINER_RUNNING == 'true') {
+                        echo 'El contenedor de desarrollo ya está en ejecución.'
+                    } else {
+                        sh "docker run -d -p ${PORT_DEV}:${PORT_CONTAINER} --name ${CONTAINER_NAME_DEV} ${DOCKER_IMAGE}"
                     }
                 }
             }

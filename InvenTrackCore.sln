@@ -15,19 +15,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{114B942A-52DE-43EE-A5B6-906A88AE3D57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvenTrackCore.Domain", "InvenTrackCore.Domain\InvenTrackCore.Domain.csproj", "{E1DE87C9-4704-4D6C-B805-7B9B6294917A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvenTrackCore.Domain", "InvenTrackCore.Domain\InvenTrackCore.Domain.csproj", "{E1DE87C9-4704-4D6C-B805-7B9B6294917A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvenTrackCore.Infrastructure", "InvenTrackCore.Infrastructure\InvenTrackCore.Infrastructure.csproj", "{F1769C86-E3CF-4217-890A-1CC2838C3D85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvenTrackCore.Infrastructure", "InvenTrackCore.Infrastructure\InvenTrackCore.Infrastructure.csproj", "{F1769C86-E3CF-4217-890A-1CC2838C3D85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvenTrackCore.Application", "InvenTrackCore.Application\InvenTrackCore.Application.csproj", "{AAE72C0C-31BB-4CA9-93A7-21CBFAEB1F24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvenTrackCore.Application", "InvenTrackCore.Application\InvenTrackCore.Application.csproj", "{AAE72C0C-31BB-4CA9-93A7-21CBFAEB1F24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvenTrackCore.Api", "InvenTrackCore.Api\InvenTrackCore.Api.csproj", "{3720D828-0CE8-4537-9FA0-1FFB77C67DBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvenTrackCore.Api", "InvenTrackCore.Api\InvenTrackCore.Api.csproj", "{3720D828-0CE8-4537-9FA0-1FFB77C67DBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvenTrackCore.Tests", "InvenTrackCore.Tests\InvenTrackCore.Tests.csproj", "{6A7A1A0A-D1BF-4456-A1F5-EE2A4E62AAC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvenTrackCore.Tests", "InvenTrackCore.Tests\InvenTrackCore.Tests.csproj", "{6A7A1A0A-D1BF-4456-A1F5-EE2A4E62AAC3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{1027C16F-4FAB-4AEA-B036-E24D3521F2DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvenTrackCore.Utilities", "InvenTrackCore.Utilities\InvenTrackCore.Utilities.csproj", "{727C3604-C878-4F85-8D8E-1B9E215AEACF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvenTrackCore.Utilities", "InvenTrackCore.Utilities\InvenTrackCore.Utilities.csproj", "{727C3604-C878-4F85-8D8E-1B9E215AEACF}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A30EEAD1-8B49-42E3-A048-EDF13E5B8122}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{727C3604-C878-4F85-8D8E-1B9E215AEACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{727C3604-C878-4F85-8D8E-1B9E215AEACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{727C3604-C878-4F85-8D8E-1B9E215AEACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A30EEAD1-8B49-42E3-A048-EDF13E5B8122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A30EEAD1-8B49-42E3-A048-EDF13E5B8122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A30EEAD1-8B49-42E3-A048-EDF13E5B8122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A30EEAD1-8B49-42E3-A048-EDF13E5B8122}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
