@@ -13,6 +13,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHealthCheck(builder.Configuration);
 builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddSwagger();
+builder.Services.AddWatchDog();
 
 builder.Services.AddHttpContextAccessor();
 
