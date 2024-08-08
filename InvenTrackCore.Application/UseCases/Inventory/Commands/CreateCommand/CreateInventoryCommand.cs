@@ -1,6 +1,10 @@
-﻿namespace InvenTrackCore.Domain.Entities;
+﻿using InvenTrackCore.Application.Commons.Bases;
+using MediatR;
+using Microsoft.AspNetCore.Http;
 
-public class Inventory : BaseEntity
+namespace InvenTrackCore.Application.UseCases.Inventory.Commands.CreateCommand;
+
+public class CreateInventoryCommand : IRequest<BaseResponse<bool>>
 {
     public string Code { get; set; } = null!;
     public string Active { get; set; } = null!;
@@ -10,8 +14,6 @@ public class Inventory : BaseEntity
     public string Model { get; set; } = null!;
     public decimal? Price { get; set; }
     public string? Details { get; set; }
-    public string? Image { get; set; }
-
-    public virtual EquipmentType EquipmentTypes { get; set; } = null!;
-    public virtual ICollection<TicketDetail> TicketDetails { get; set; } = new List<TicketDetail>();
+    public IFormFile? Image { get; set; }
+    public int State { get; set; }
 }

@@ -25,6 +25,8 @@ namespace InvenTrackCore.Infrastructure
 
             services.AddTransient<IOrderingQuery, OrderingQuery>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IFileStorageService, FileStorageService>();
+            services.AddTransient<IGenerateCodeService, GenerateCodeService>();
 
             return services;
         }
