@@ -7,8 +7,6 @@ namespace InvenTrackCore.Application.UseCases.Inventory.Commands.UpdateCommand;
 public class UpdateInventoryCommand : IRequest<BaseResponse<bool>>
 {
     public int InventoryId { get; set; }
-    public string Code { get; set; } = null!;
-    public string Active { get; set; } = null!;
     public int EquipmentTypeId { get; set; }
     public string Brand { get; set; } = null!;
     public string Series { get; set; } = null!;

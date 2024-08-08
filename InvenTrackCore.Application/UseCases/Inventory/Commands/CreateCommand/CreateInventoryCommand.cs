@@ -6,8 +6,6 @@ namespace InvenTrackCore.Application.UseCases.Inventory.Commands.CreateCommand;
 
 public class CreateInventoryCommand : IRequest<BaseResponse<bool>>
 {
-    public string Code { get; set; } = null!;
-    public string Active { get; set; } = null!;
     public int EquipmentTypeId { get; set; }
     public string Brand { get; set; } = null!;
     public string Series { get; set; } = null!;
