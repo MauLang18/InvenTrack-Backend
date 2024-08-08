@@ -11,6 +11,7 @@ public class EmployeeResponseDto
     public string Department { get; set; } = null!;
     public string? Email { get; set; }
     public string? Phone { get; set; }
+    public DateTime AuditCreateDate { get; set; }
     public int State { get; set; }
     public string StateEmployee { get; set; } = null!;
 }
