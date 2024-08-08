@@ -10,7 +10,7 @@ public class InventaryConfiguration : IEntityTypeConfiguration<Inventory>
     {
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id)
-            .HasColumnName("InvetoryId");
+            .HasColumnName("InventoryId");
         builder.Property(x => x.Code)
             .IsUnicode();
         builder.Property(x => x.Active)
