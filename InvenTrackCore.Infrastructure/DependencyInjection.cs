@@ -27,6 +27,8 @@ namespace InvenTrackCore.Infrastructure
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IFileStorageService, FileStorageService>();
             services.AddTransient<IGenerateCodeService, GenerateCodeService>();
+            services.AddTransient<IGenerateQRCodeService, GenerateQRCodeService>();
+            services.AddTransient<IGenerateExcelService, GenerateExcelService>();
 
             return services;
         }

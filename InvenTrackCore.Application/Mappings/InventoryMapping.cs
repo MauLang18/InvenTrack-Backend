@@ -13,6 +13,7 @@ public class InventoryMapping : Profile
     {
         CreateMap<Inventory, InventoryResponseDto>()
             .ForMember(x => x.InventoryId, x => x.MapFrom(y => y.Id))
+            .ForMember(x => x.EquipmentTypeName, x => x.MapFrom(y => y.EquipmentTypes.Name))
             .ForMember(x => x.StateInventory, x => x.MapFrom(y => y.State.Equals((int)StateTypes.Activo) ? "ACTIVO" : "INACTIVO"))
             .ReverseMap();
 
