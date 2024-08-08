@@ -85,6 +85,7 @@ public class InventoryCommandsTest
 
         var command = new UpdateInventoryCommand()
         {
+            InventoryId = 3,
             EquipmentTypeId = 2,
             Brand = "Monitor",
             Series = "M0001",
