@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace InvenTrackCore.Infrastructure.Persistence.Context.Configurations;
 
-public class InventaryConfiguration : IEntityTypeConfiguration<Inventory>
+public class InventoryConfiguration : IEntityTypeConfiguration<Inventory>
 {
     public void Configure(EntityTypeBuilder<Inventory> builder)
     {
