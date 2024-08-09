@@ -26,11 +26,13 @@ public class TicketDetailRepository : ITicketDetailRepository
                     Inventories = new Inventory
                     {
                         Image = x.Inventory.Image,
+                        EquipmentTypes = x.Inventory.EquipmentTypes,
                         Code = x.Inventory.Code,
                         Active = x.Inventory.Active,
                         Brand = x.Inventory.Brand,
                         Series = x.Inventory.Series,
                         Model = x.Inventory.Model,
+                        Details = x.Inventory.Details,
                     },
                     Details = x.TicketDetail.Details,
                 })

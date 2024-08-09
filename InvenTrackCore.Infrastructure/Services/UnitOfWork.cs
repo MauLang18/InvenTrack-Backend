@@ -25,11 +25,6 @@ public class UnitOfWork : IUnitOfWork
         _context = context;
     }
 
-    public UnitOfWork()
-    {
-
-    }
-
     public IGenericRepository<Department> Department => _department ?? new GenericRepository<Department>(_context);
 
     public IGenericRepository<Employee> Employee => _employee ?? new GenericRepository<Employee>(_context);

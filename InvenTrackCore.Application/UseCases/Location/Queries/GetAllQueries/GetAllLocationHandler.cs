@@ -53,8 +53,8 @@ public class GetAllLocationHandler : IRequestHandler<GetAllLocationQuery, BaseRe
 
             request.Sort ??= "Id";
 
-            var items = _ordering.Ordering(request, locations)
-                .ToListAsync();
+            var items = await _ordering.Ordering(request, locations)
+                .ToListAsync(cancellationToken);
 
             response.IsSuccess = true;
             response.TotalRecords = await locations.CountAsync(cancellationToken);

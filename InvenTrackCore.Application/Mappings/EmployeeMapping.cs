@@ -13,6 +13,8 @@ public class EmployeeMapping : Profile
     {
         CreateMap<Employee, EmployeeResponseDto>()
             .ForMember(x => x.EmployeeId, x => x.MapFrom(y => y.Id))
+            .ForMember(x => x.Location, x => x.MapFrom(y => y.Locations.Name))
+            .ForMember(x => x.Department, x => x.MapFrom(y => y.Departments.Name))
             .ForMember(x => x.StateEmployee, x => x.MapFrom(y => y.State.Equals((int)StateTypes.Activo) ? "ACTIVO" : "INACTIVO"))
             .ReverseMap();
 
