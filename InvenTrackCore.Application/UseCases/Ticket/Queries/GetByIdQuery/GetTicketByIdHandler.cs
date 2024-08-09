@@ -34,9 +34,21 @@ public class GetTicketByIdHandler : IRequestHandler<GetTicketByIdQuery, BaseResp
                 return response;
             }
 
+            var departmentId = await _unitOfWork.Employee.GetByIdAsync(ticket.AssignedToId);
+            var locationId = await _unitOfWork.Employee.GetByIdAsync(ticket.AssignedToId);
+            var department = await _unitOfWork.Department.GetByIdAsync(departmentId.DepartmentId);
+            var location = await _unitOfWork.Location.GetByIdAsync(locationId.LocationId);
+            var assignedTo = await _unitOfWork.Employee.GetByIdAsync(ticket.AssignedToId);
+            var deliveredBy = await _unitOfWork.Users.GetByIdAsync(ticket.DeliveredById);
+            var receivedById = await _unitOfWork.Employee.GetByIdAsync(ticket.ReceivedById);
             var ticketDetails = await _unitOfWork.TicketDetail.GetTicketDetailByTicketId(request.TicketId);
 
             ticket.TicketDetails = ticketDetails.ToList();
+            ticket.Department = department.Name;
+            ticket.Location = location.Name;
+            ticket.AssignedTo = assignedTo.Name + " " + assignedTo.LastName;
+            ticket.ReceivedBy = receivedById.Name + " " + receivedById.LastName;
+            ticket.DeliveredBy = deliveredBy.Name + " " + deliveredBy.LastName;
 
             response.IsSuccess = true;
             response.Data = _mapper.Map<TicketByIdResponseDto>(ticket);

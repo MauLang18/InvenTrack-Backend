@@ -19,6 +19,8 @@ namespace InvenTrackCore.Infrastructure
                 options => options.UseNpgsql(configuration.GetConnectionString("Connection"),
                 b => b.MigrationsAssembly(assembly)));
 
+            QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
+
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<ITicketDetailRepository, TicketDetailRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
@@ -29,6 +31,7 @@ namespace InvenTrackCore.Infrastructure
             services.AddTransient<IGenerateCodeService, GenerateCodeService>();
             services.AddTransient<IGenerateQRCodeService, GenerateQRCodeService>();
             services.AddTransient<IGenerateExcelService, GenerateExcelService>();
+            services.AddTransient<IGeneratePdfService, GeneratePdfService>();
 
             return services;
         }
