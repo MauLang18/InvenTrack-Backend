@@ -7,6 +7,6 @@ public class UpdateLocationCommand : IRequest<BaseResponse<bool>>
 {
     public int LocationId { get; set; }
     public string Name { get; set; } = null!;
-    public string Adress { get; set; } = null!;
+    public string Address { get; set; } = null!;
     public int State { get; set; }
 }
