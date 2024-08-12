@@ -3,16 +3,13 @@ using InvenTrackCore.Application.Interfaces.Services;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using System.Text.Json;
 
 namespace InvenTrackCore.Infrastructure.Services
 {
     public class GeneratePdfService : IGeneratePdfService
     {
-        public byte[] GeneratePdf(string ticketData)
+        public byte[] GeneratePdf(TicketByIdResponseDto ticket)
         {
-            var ticket = JsonSerializer.Deserialize<TicketByIdResponseDto>(ticketData);
-
             using var stream = new MemoryStream();
             var document = Document.Create(container =>
             {

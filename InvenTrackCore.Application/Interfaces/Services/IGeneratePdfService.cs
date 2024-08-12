@@ -1,6 +1,8 @@
-﻿namespace InvenTrackCore.Application.Interfaces.Services;
+﻿using InvenTrackCore.Application.Dtos.Ticket.Response;
+
+namespace InvenTrackCore.Application.Interfaces.Services;
 
 public interface IGeneratePdfService
 {
-    byte[] GeneratePdf(string ticket);
+    byte[] GeneratePdf(TicketByIdResponseDto ticket);
 }
