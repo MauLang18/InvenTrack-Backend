@@ -15,13 +15,11 @@ namespace InvenTrackCore.Api.Controllers
     public class InventoryController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IGenerateQRCodeService _generateQRCodeService;
         private readonly IGenerateExcelService _generateExcelService;
 
-        public InventoryController(IMediator mediator, IGenerateQRCodeService generateQRCodeService, IGenerateExcelService generateExcelService)
+        public InventoryController(IMediator mediator, IGenerateExcelService generateExcelService)
         {
             _mediator = mediator;
-            _generateQRCodeService = generateQRCodeService;
             _generateExcelService = generateExcelService;
         }
 
