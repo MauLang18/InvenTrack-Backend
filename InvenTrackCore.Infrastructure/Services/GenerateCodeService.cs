@@ -15,9 +15,9 @@ public class GenerateCodeService : IGenerateCodeService
         _context = context;
     }
 
-    public async Task<string> GenerateCode(int equipmentTypeId)
+    public async Task<string> GenerateCode(int EquipmentTypeId)
     {
-        var equipmentType = await _unitOfWork.EquipmentType.GetByIdAsync(equipmentTypeId);
+        var equipmentType = await _unitOfWork.EquipmentType.GetByIdAsync(EquipmentTypeId);
 
         if (equipmentType is null)
         {
@@ -27,7 +27,7 @@ public class GenerateCodeService : IGenerateCodeService
         var prefix = equipmentType.Name.Substring(0, 3).ToUpper();
 
         var lastInventory = await _context.Inventories
-            .Where(i => i.EquipmentTypeId == equipmentTypeId)
+            .Where(i => i.EquipmentTypeId == EquipmentTypeId)
             .OrderByDescending(i => i.Id)
             .FirstOrDefaultAsync();
 

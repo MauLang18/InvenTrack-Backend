@@ -15,7 +15,7 @@ public class GenerateQRCodeService : IGenerateQRCodeService
 
         AnyBitmap qrBitmap = qrCode.Save();
 
-        string tempFilePath = Path.GetTempFileName() + ".png";
+        string tempFilePath = Path.GetRandomFileName() + ".png";
 
         qrBitmap.SaveAs(tempFilePath);
 

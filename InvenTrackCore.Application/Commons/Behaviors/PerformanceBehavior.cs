@@ -29,9 +29,9 @@ public class PerformanceBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
         {
             var requestName = typeof(TRequest).Name;
             _logger
-                .LogWarning("InvenTrackCore long running Request: {name}({elapsedMilliseconds} milliseconds) {@Request}",
+                .LogWarning("inventrackcore long running Request: {name}({elapsedMilliseconds} milliseconds) {@Request}",
                 requestName, elapsedMilliseconds, JsonSerializer.Serialize(request));
-            WatchLogger.LogWarning("InvenTrackCore long running Request: {name}({elapsedMilliseconds} milliseconds) {@Request}",
+            WatchLogger.LogWarning("inventrackcore long running Request: {name}({elapsedMilliseconds} milliseconds) {@Request}",
                 requestName, elapsedMilliseconds.ToString(), JsonSerializer.Serialize(request));
         }
 

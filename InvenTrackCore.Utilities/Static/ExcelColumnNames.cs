@@ -1,6 +1,6 @@
 ﻿namespace InvenTrackCore.Utilities.Static;
 
-public class ExcelColumnNames
+public static class ExcelColumnNames
 {
     public static List<TableColumns> GetColumns(IEnumerable<(string ColumnName, string PropertyName)> columnsProperties)
     {
