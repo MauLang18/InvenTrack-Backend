@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InvenTrackCore.Application.Dtos.Users.Response;
 using InvenTrackCore.Application.UseCases.Users.Commands.CreateCommand;
+using InvenTrackCore.Application.UseCases.Users.Commands.UpdateCommand;
 using InvenTrackCore.Domain.Entities;
 using InvenTrackCore.Utilities.Static;
 
@@ -20,5 +21,7 @@ public class UserMapping : Profile
             .ReverseMap();
 
         CreateMap<CreateUserCommand, Users>();
+
+        CreateMap<UpdateUserCommand, Users>();
     }
 }

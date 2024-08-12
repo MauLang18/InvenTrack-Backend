@@ -63,7 +63,7 @@ public class UserCommandsTest
             Name = "Juan",
             LastName = "Calvo",
             UserName = "jcalvo",
-            PassWord = "123",
+            PassWord = "12345678",
             Email = "jjcalvo",
             State = 1
         };
@@ -87,7 +87,7 @@ public class UserCommandsTest
             Name = "Pedro",
             LastName = "Pascal",
             UserName = "ppascal",
-            PassWord = "123",
+            PassWord = "12345678",
             Email = "ppascal@tranquiexpress.com",
             State = 1
         };
