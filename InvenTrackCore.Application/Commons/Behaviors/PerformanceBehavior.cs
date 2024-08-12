@@ -25,7 +25,7 @@ public class PerformanceBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 
         var elapsedMilliseconds = _stopwatch.ElapsedMilliseconds;
 
-        if (elapsedMilliseconds > 10)
+        if (elapsedMilliseconds > 1500)
         {
             var requestName = typeof(TRequest).Name;
             _logger

@@ -6,7 +6,7 @@ public class Inventory : BaseEntity
     public string Active { get; set; } = null!;
     public int EquipmentTypeId { get; set; }
     public string Brand { get; set; } = null!;
-    public string? Series { get; set; } = null!;
+    public string Series { get; set; } = null!;
     public string Model { get; set; } = null!;
     public decimal? Price { get; set; }
     public string? Details { get; set; }

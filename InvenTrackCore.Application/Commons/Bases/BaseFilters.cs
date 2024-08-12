@@ -7,4 +7,5 @@ public class BaseFilters : BasePagination
     public int? StateFilter { get; set; }
     public string? StartDate { get; set; }
     public string? EndDate { get; set; }
+    public bool? Download { get; set; } = false;
 }

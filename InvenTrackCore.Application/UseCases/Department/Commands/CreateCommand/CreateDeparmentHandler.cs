@@ -26,7 +26,7 @@ public class CreateDeparmentHandler : IRequestHandler<CreateDepartmentCommand, B
         try
         {
             var department = _mapper.Map<Entity.Department>(request);
-            await _unitOfWork.Department.CrateAsync(department);
+            await _unitOfWork.Department.CreateAsync(department);
             await _unitOfWork.SaveChangesAsync();
 
             response.IsSuccess = true;

@@ -39,7 +39,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return response!;
     }
 
-    public async Task CrateAsync(T entity)
+    public async Task CreateAsync(T entity)
     {
         entity.AuditCreateUser = 1;
         entity.AuditCreateDate = DateTime.UtcNow;

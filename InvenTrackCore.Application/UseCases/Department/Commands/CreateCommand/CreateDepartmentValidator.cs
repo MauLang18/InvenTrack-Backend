@@ -9,12 +9,12 @@ public class CreateDepartmentValidator : AbstractValidator<CreateDepartmentComma
         RuleFor(x => x.Name)
             .NotNull().WithMessage("El Nombre no puede ser nulo")
             .NotEmpty().WithMessage("El Nombre no puede ser vacío.")
-            .MinimumLength(5).WithMessage("El Nombre debe tener almenos 5 caracteres.")
+            .MinimumLength(1).WithMessage("El Nombre debe tener almenos 1 caracter.")
             .MaximumLength(100).WithMessage("El Nombre debe tener como máximo 100 caracteres.");
         RuleFor(x => x.Company)
             .NotNull().WithMessage("La Compañia no puede ser nulo")
             .NotEmpty().WithMessage("La Compañia no puede ser vacío.")
-            .MinimumLength(5).WithMessage("La Compañia debe tener almenos 5 caracteres.")
+            .MinimumLength(1).WithMessage("La Compañia debe tener almenos 1 caracter.")
             .MaximumLength(100).WithMessage("La Compañia debe tener como máximo 100 caracteres.");
     }
 }
