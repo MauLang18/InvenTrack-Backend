@@ -5,30 +5,33 @@ namespace InvenTrackCore.Api.Middleware;
 
 public static class SwaggerExtensions
 {
-    public static IServiceCollection AddSwagger(this IServiceCollection services)
+    private static readonly string[] EmptyStringArray = Array.Empty<string>();
+
+    public static IServiceCollection AddSwagger(this IServiceCollection services, IConfiguration configuration)
     {
+        var swaggerConfig = configuration.GetSection("Swagger");
+
         var openApi = new OpenApiInfo
         {
-            Title = "InvenTrackCore",
-            Version = "v1",
-            Description = "Inventary API 2024",
-            TermsOfService = new Uri("https://opensource.org/licenses/"),
+            Title = swaggerConfig["Title"],
+            Version = swaggerConfig["Version"],
+            Description = swaggerConfig["Description"],
+            TermsOfService = new Uri(swaggerConfig["TermsOfServiceUrl"]!),
             Contact = new OpenApiContact
             {
-                Name = "CustomCodeCR",
-                Email = "customcodecr@gmail.com",
-                Url = new Uri("https://customcodecr.com")
+                Name = swaggerConfig["Contact:Name"],
+                Email = swaggerConfig["Contact:Email"],
+                Url = new Uri(swaggerConfig["Contact:Url"]!)
             },
             License = new OpenApiLicense
             {
-                Name = "Use under LICX",
-                Url = new Uri("https://opensource.org/licenses/")
+                Name = swaggerConfig["License:Name"],
+                Url = new Uri(swaggerConfig["License:Url"]!)
             }
         };
 
         services.AddSwaggerGen(x =>
         {
-            openApi.Version = "v1";
             x.SwaggerDoc("v1", openApi);
 
             var securityScheme = new OpenApiSecurityScheme
@@ -49,7 +52,7 @@ public static class SwaggerExtensions
             x.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
             x.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
-                { securityScheme, new string[]{ } }
+                { securityScheme, EmptyStringArray }
             });
         });
 

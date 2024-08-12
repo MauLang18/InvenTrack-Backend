@@ -12,7 +12,7 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHealthCheck(builder.Configuration);
 builder.Services.AddAuthentication(builder.Configuration);
-builder.Services.AddSwagger();
+builder.Services.AddSwagger(builder.Configuration);
 builder.Services.AddWatchDog();
 
 builder.Services.AddHttpContextAccessor();
@@ -72,6 +72,17 @@ app.UseWatchDog(configuration =>
     configuration.WatchPagePassword = "S0port3.";
 });
 
-app.Run();
+await app.RunAsync();
 
-public partial class Program { }
+public partial class Program
+{
+    protected Program() { }
+
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+        var app = builder.Build();
+        app.Run();
+    }
+}

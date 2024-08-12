@@ -9,9 +9,9 @@ namespace InvenTrackCore.Application.Commons.Behaviors;
 public class PerformanceBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly Stopwatch _stopwatch;
-    private readonly ILogger<TRequest> _logger;
+    private readonly ILogger<PerformanceBehavior<TRequest, TResponse>> _logger;
 
-    public PerformanceBehavior(ILogger<TRequest> logger)
+    public PerformanceBehavior(ILogger<PerformanceBehavior<TRequest, TResponse>> logger)
     {
         _stopwatch = new Stopwatch();
         _logger = logger;
@@ -28,10 +28,9 @@ public class PerformanceBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
         if (elapsedMilliseconds > 1500)
         {
             var requestName = typeof(TRequest).Name;
-            _logger
-                .LogWarning("inventrackcore long running Request: {name}({elapsedMilliseconds} milliseconds) {@Request}",
+            _logger.LogWarning("InvenTrackCore Long Running Request: {RequestName} ({ElapsedMilliseconds} milliseconds) {@Request}",
                 requestName, elapsedMilliseconds, JsonSerializer.Serialize(request));
-            WatchLogger.LogWarning("inventrackcore long running Request: {name}({elapsedMilliseconds} milliseconds) {@Request}",
+            WatchLogger.LogWarning("InvenTrackCore Long Running Request: {RequestName} ({ElapsedMilliseconds} milliseconds) {@Request}",
                 requestName, elapsedMilliseconds.ToString(), JsonSerializer.Serialize(request));
         }
 
