@@ -62,7 +62,7 @@ public class FileStorageService : IFileStorageService
         return pathDb;
     }
 
-    private async Task<string> EditFileAsync(string container, IFormFile file, string route, string webRootPath, string scheme, string host)
+    private static async Task<string> EditFileAsync(string container, IFormFile file, string route, string webRootPath, string scheme, string host)
     {
         await RemoveFileAsync(route, container, webRootPath);
 

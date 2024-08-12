@@ -26,7 +26,7 @@ public class DeleteTicketHandler : IRequestHandler<DeleteTicketCommand, BaseResp
 
         try
         {
-            var ticket = await _mediator.Send(new GetTicketByIdQuery() { TicketId = request.TicketId });
+            var ticket = await _mediator.Send(new GetTicketByIdQuery { TicketId = request.TicketId }, cancellationToken);
 
             if (ticket is null)
             {
