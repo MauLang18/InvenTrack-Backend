@@ -59,6 +59,8 @@ public class GetAllUserHandler : IRequestHandler<GetAllUserQuery, BaseResponse<I
                                          x.AuditCreateDate <= Convert.ToDateTime(request.EndDate).ToUniversalTime().AddDays(1));
             }
 
+            request.Sort ??= "Id";
+
             var items = await _ordering.Ordering(request, users)
                 .ToListAsync(cancellationToken);
 

@@ -1,5 +1,7 @@
-﻿using InvenTrackCore.Application.Interfaces.Persistence;
+﻿using InvenTrackCore.Application.Interfaces.Authentication;
+using InvenTrackCore.Application.Interfaces.Persistence;
 using InvenTrackCore.Application.Interfaces.Services;
+using InvenTrackCore.Infrastructure.Authentication;
 using InvenTrackCore.Infrastructure.Persistence.Context;
 using InvenTrackCore.Infrastructure.Persistence.Repositories;
 using InvenTrackCore.Infrastructure.Services;
@@ -32,6 +34,10 @@ namespace InvenTrackCore.Infrastructure
             services.AddTransient<IGenerateQRCodeService, GenerateQRCodeService>();
             services.AddTransient<IGenerateExcelService, GenerateExcelService>();
             services.AddTransient<IGeneratePdfService, GeneratePdfService>();
+
+            services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
+
+            services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
 
             return services;
         }

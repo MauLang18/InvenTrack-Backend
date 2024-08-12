@@ -1,4 +1,5 @@
 ﻿using InvenTrackCore.Application.Commons.Bases;
+using InvenTrackCore.Application.Interfaces.Authentication;
 using InvenTrackCore.Application.Interfaces.Services;
 using InvenTrackCore.Utilities.Static;
 using MediatR;
@@ -10,10 +11,12 @@ namespace InvenTrackCore.Application.UseCases.Users.Queries.LoginQuery;
 public class LoginHandler : IRequestHandler<LoginQuery, BaseResponse<string>>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-    public LoginHandler(IUnitOfWork unitOfWork)
+    public LoginHandler(IUnitOfWork unitOfWork, IJwtTokenGenerator jwtTokenGenerator)
     {
         _unitOfWork = unitOfWork;
+        _jwtTokenGenerator = jwtTokenGenerator;
     }
 
     public async Task<BaseResponse<string>> Handle(LoginQuery request, CancellationToken cancellationToken)
@@ -38,7 +41,7 @@ public class LoginHandler : IRequestHandler<LoginQuery, BaseResponse<string>>
             }
 
             response.IsSuccess = true;
-            //response.Data = _jwtTokenGenerator.GenerateToken(user);
+            response.Data = _jwtTokenGenerator.GenerateToken(user);
             response.Message = ReplyMessage.MESSAGE_TOKEN;
         }
         catch (Exception ex)

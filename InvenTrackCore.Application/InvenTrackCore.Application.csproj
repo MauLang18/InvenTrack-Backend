@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Users\Commands\CreateCommand\" />
     <Folder Include="UseCases\Users\Commands\DeleteCommand\" />
     <Folder Include="UseCases\Users\Commands\UpdateCommand\" />
   </ItemGroup>
