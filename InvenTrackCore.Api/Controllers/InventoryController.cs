@@ -47,14 +47,6 @@ namespace InvenTrackCore.Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet("QRCode/{inventoryId:int}")]
-        public async Task<IActionResult> InventoryQRCode(int inventoryId)
-        {
-            var response = await _mediator.Send(new GetInventoryByIdQuery() { InventoryId = inventoryId });
-            byte[] qrCodeImage = _generateQRCodeService.GenerateQRCode(response.Data);
-            return File(qrCodeImage, ContentType.ContentTypeImage, $"Inventory-{inventoryId}-QRCode.png");
-        }
-
         [HttpPost("Create")]
         public async Task<IActionResult> InventoryCreate([FromForm] CreateInventoryCommand command)
         {

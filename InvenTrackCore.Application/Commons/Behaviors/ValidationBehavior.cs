@@ -16,14 +16,14 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
-        if (_validators.Count() > 0)
+        if (_validators.Any())
         {
             var context = new ValidationContext<TRequest>(request);
 
             var validationResults = await Task.WhenAll(_validators.Select(x => x.ValidateAsync(context, cancellationToken)));
 
             var failures = validationResults
-                .Where(x => x.Errors.Count > 0)
+                .Where(x => x.Errors.Any())
                 .SelectMany(x => x.Errors)
                 .Select(x => new BaseError()
                 {
@@ -31,7 +31,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
                     ErrorMessage = x.ErrorMessage
                 }).ToList();
 
-            if (failures.Count > 0)
+            if (failures.Any())
             {
                 throw new ValidationException(failures);
             }

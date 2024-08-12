@@ -8,7 +8,7 @@ using System.Data;
 
 namespace InvenTrackCore.Infrastructure.Services;
 
-public class UnitOfWork : IUnitOfWork, IDisposable
+public class UnitOfWork : IUnitOfWork
 {
     private readonly ApplicationDbContext _context;
     private bool _disposed = false;

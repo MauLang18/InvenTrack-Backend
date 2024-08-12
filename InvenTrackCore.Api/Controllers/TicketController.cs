@@ -6,7 +6,6 @@ using InvenTrackCore.Application.UseCases.Ticket.Queries.GetByIdQuery;
 using InvenTrackCore.Utilities.Static;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 
 namespace InvenTrackCore.Api.Controllers;
 
@@ -41,8 +40,7 @@ public class TicketController : ControllerBase
     public async Task<IActionResult> TicketPdf(int ticketId)
     {
         var response = await _mediator.Send(new GetTicketByIdQuery() { TicketId = ticketId });
-        var data = JsonSerializer.Serialize(response.Data!);
-        byte[] file = _generatePdfService.GeneratePdf(data);
+        byte[] file = _generatePdfService.GeneratePdf(response.Data!);
         return File(file, ContentType.ContentTypePdf, $"Ticket-{ticketId}.pdf");
     }
 
