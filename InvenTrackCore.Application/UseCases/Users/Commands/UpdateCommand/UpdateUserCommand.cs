@@ -1,10 +1,11 @@
 ﻿using InvenTrackCore.Application.Commons.Bases;
 using MediatR;
 
-namespace InvenTrackCore.Application.UseCases.Users.Commands.CreateCommand;
+namespace InvenTrackCore.Application.UseCases.Users.Commands.UpdateCommand;
 
-public class CreateUserCommand : IRequest<BaseResponse<bool>>
+public class UpdateUserCommand : IRequest<BaseResponse<bool>>
 {
+    public int UserId { get; set; }
     public string Name { get; set; } = null!;
     public string LastName { get; set; } = null!;
     public string UserName { get; set; } = null!;

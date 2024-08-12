@@ -23,9 +23,4 @@
     <ProjectReference Include="..\InvenTrackCore.Utilities\InvenTrackCore.Utilities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\Users\Commands\DeleteCommand\" />
-    <Folder Include="UseCases\Users\Commands\UpdateCommand\" />
-  </ItemGroup>
-
 </Project>
