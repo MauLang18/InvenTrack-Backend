@@ -28,7 +28,10 @@ public class GetAllInventoryHandler : IRequestHandler<GetAllInventoryQuery, Base
 
         try
         {
-            var inventories = _unitOfWork.Inventory.GetAllQueryable();
+            var inventories = _unitOfWork.Inventory.GetAllQueryable()
+                .AsNoTracking()
+                .Include(x => x.EquipmentTypes)
+                .AsQueryable();
 
             if (request.NumFilter is not null && !string.IsNullOrEmpty(request.TextFilter))
             {

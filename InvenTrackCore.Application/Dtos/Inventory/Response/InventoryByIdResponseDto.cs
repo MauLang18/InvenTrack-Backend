@@ -12,4 +12,5 @@ public class InventoryByIdResponseDto
     public decimal? Price { get; set; }
     public string? Details { get; set; }
     public string? Image { get; set; }
+    public int State { get; set; }
 }

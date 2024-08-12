@@ -28,7 +28,11 @@ public class GetAllEmployeeHandler : IRequestHandler<GetAllEmployeeQuery, BaseRe
 
         try
         {
-            var employees = _unitOfWork.Employee.GetAllQueryable();
+            var employees = _unitOfWork.Employee.GetAllQueryable()
+                .AsNoTracking()
+                .Include(x => x.Locations)
+                .Include(x => x.Departments)
+                .AsQueryable();
 
             if (request.NumFilter is not null && !string.IsNullOrEmpty(request.TextFilter))
             {

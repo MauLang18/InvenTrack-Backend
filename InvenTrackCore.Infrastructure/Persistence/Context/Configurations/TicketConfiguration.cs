@@ -13,14 +13,6 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasColumnName("TicketId");
         builder.Property(x => x.Details)
             .IsUnicode(false);
-        builder.HasOne(x => x.Locations)
-                .WithMany(y => y.Tickets)
-                .HasForeignKey(x => x.LocateId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-        builder.HasOne(x => x.Departments)
-                .WithMany(y => y.Tickets)
-                .HasForeignKey(x => x.DepartmentId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
         builder.HasOne(x => x.Employees)
                 .WithMany(y => y.Tickets)
                 .HasForeignKey(x => x.AssignedToId)

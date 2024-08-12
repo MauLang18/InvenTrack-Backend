@@ -325,14 +325,14 @@ namespace InvenTrackCore.Infrastructure.Persistence.Migrations
                     b.Property<int>("DeliveredById")
                         .HasColumnType("integer");
 
-                    b.Property<int>("DepartmentId")
+                    b.Property<int?>("DepartmentId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Details")
                         .IsUnicode(false)
                         .HasColumnType("text");
 
-                    b.Property<int>("LocateId")
+                    b.Property<int?>("LocationId")
                         .HasColumnType("integer");
 
                     b.Property<int>("ReceivedById")
@@ -347,7 +347,7 @@ namespace InvenTrackCore.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("LocateId");
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("ReceivedById");
 
@@ -466,26 +466,20 @@ namespace InvenTrackCore.Infrastructure.Persistence.Migrations
                         .HasForeignKey("DeliveredById")
                         .IsRequired();
 
-                    b.HasOne("InvenTrackCore.Domain.Entities.Department", "Departments")
+                    b.HasOne("InvenTrackCore.Domain.Entities.Department", null)
                         .WithMany("Tickets")
-                        .HasForeignKey("DepartmentId")
-                        .IsRequired();
+                        .HasForeignKey("DepartmentId");
 
-                    b.HasOne("InvenTrackCore.Domain.Entities.Location", "Locations")
+                    b.HasOne("InvenTrackCore.Domain.Entities.Location", null)
                         .WithMany("Tickets")
-                        .HasForeignKey("LocateId")
-                        .IsRequired();
+                        .HasForeignKey("LocationId");
 
                     b.HasOne("InvenTrackCore.Domain.Entities.Employee", "Employees")
                         .WithMany("Tickets")
                         .HasForeignKey("ReceivedById")
                         .IsRequired();
 
-                    b.Navigation("Departments");
-
                     b.Navigation("Employees");
-
-                    b.Navigation("Locations");
 
                     b.Navigation("Users");
                 });

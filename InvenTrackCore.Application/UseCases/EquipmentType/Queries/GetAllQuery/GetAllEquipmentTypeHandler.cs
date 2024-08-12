@@ -32,7 +32,7 @@ public class GetAllEquipmentTypeHandler : IRequestHandler<GetAllEquipmentTypeQue
 
             if (request.NumFilter is not null && !string.IsNullOrEmpty(request.TextFilter))
             {
-                switch (request.NumPage)
+                switch (request.NumFilter)
                 {
                     case 1:
                         equipmentTypes = equipmentTypes.Where(x => x.Name.Contains(request.TextFilter));
