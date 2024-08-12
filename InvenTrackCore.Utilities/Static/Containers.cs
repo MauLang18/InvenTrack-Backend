@@ -1,6 +1,6 @@
 ﻿namespace InvenTrackCore.Utilities.Static;
 
-public class Containers
+public static class Containers
 {
     public const string INVENTORY = "inventories";
 }

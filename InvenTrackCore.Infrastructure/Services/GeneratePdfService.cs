@@ -9,9 +9,9 @@ namespace InvenTrackCore.Infrastructure.Services
 {
     public class GeneratePdfService : IGeneratePdfService
     {
-        public byte[] GeneratePdf(string data)
+        public byte[] GeneratePdf(string ticketData)
         {
-            var ticket = JsonSerializer.Deserialize<TicketByIdResponseDto>(data);
+            var ticket = JsonSerializer.Deserialize<TicketByIdResponseDto>(ticketData);
 
             using var stream = new MemoryStream();
             var document = Document.Create(container =>
@@ -92,7 +92,7 @@ namespace InvenTrackCore.Infrastructure.Services
                         column.Item().Text("Descripción de equipos:").Bold();
                         column.Item().Text(ticket!.Details ?? "N/A");
 
-                        if (ticket.TicketDetails != null && ticket.TicketDetails.Any())
+                        if (ticket.TicketDetails != null && ticket.TicketDetails.Count == 0)
                         {
                             column.Item().PaddingVertical(15).Table(table =>
                             {

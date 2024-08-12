@@ -40,7 +40,7 @@ public class FileStorageService : IFileStorageService
         await RemoveFileAsync(route, container, webRootPath);
     }
 
-    private async Task<string> SaveFileAsync(string container, IFormFile file, string webRootPath, string scheme, string host)
+    private static async Task<string> SaveFileAsync(string container, IFormFile file, string webRootPath, string scheme, string host)
     {
         var extension = Path.GetExtension(file.FileName);
         var fileName = $"{Guid.NewGuid()}{extension}";
@@ -69,7 +69,7 @@ public class FileStorageService : IFileStorageService
         return await SaveFileAsync(container, file, webRootPath, scheme, host);
     }
 
-    private Task RemoveFileAsync(string route, string container, string webRootPath)
+    private static Task RemoveFileAsync(string route, string container, string webRootPath)
     {
         if (!string.IsNullOrEmpty(route)) return Task.CompletedTask;
 
