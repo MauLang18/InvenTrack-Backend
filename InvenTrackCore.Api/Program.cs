@@ -73,3 +73,5 @@ app.UseWatchDog(configuration =>
 });
 
 await app.RunAsync();
+
+public partial class Program() { }
