@@ -5,6 +5,7 @@ using InvenTrackCore.Utilities.Static;
 using MediatR;
 using WatchDog;
 using BC = BCrypt.Net.BCrypt;
+using Entity = InvenTrackCore.Domain.Entities;
 
 namespace InvenTrackCore.Application.UseCases.Users.Commands.UpdateCommand;
 
@@ -34,12 +35,15 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, BaseResponse
                 return response;
             }
 
-            _mapper.Map(request, existUser);
+            var user = _mapper.Map<Entity.Users>(request);
+            user.Id = request.UserId;
 
             if (request.PassWord is not null)
-                existUser.PassWord = BC.HashPassword(request.PassWord);
+                user.PassWord = BC.HashPassword(request.PassWord);
+            else
+                user.PassWord = existUser.PassWord;
 
-            _unitOfWork.Users.UpdateAsync(existUser);
+            _unitOfWork.Users.UpdateAsync(user);
             await _unitOfWork.SaveChangesAsync();
 
             response.IsSuccess = true;

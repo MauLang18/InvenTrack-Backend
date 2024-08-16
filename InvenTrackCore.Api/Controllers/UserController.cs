@@ -1,7 +1,9 @@
 ﻿using InvenTrackCore.Application.UseCases.Users.Commands.CreateCommand;
+using InvenTrackCore.Application.UseCases.Users.Commands.DeleteCommand;
+using InvenTrackCore.Application.UseCases.Users.Commands.UpdateCommand;
 using InvenTrackCore.Application.UseCases.Users.Queries.GetAllQuery;
 using InvenTrackCore.Application.UseCases.Users.Queries.GetByIdQuery;
-using InvenTrackCore.Application.UseCases.Users.Queries.LoginQuery;
+using InvenTrackCore.Application.UseCases.Users.Queries.GetSelectQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +27,13 @@ public class UserController : ControllerBase
         return Ok(response);
     }
 
+    [HttpGet("Select")]
+    public async Task<IActionResult> UserSelect()
+    {
+        var response = await _mediator.Send(new GetSelectUserQuery());
+        return Ok(response);
+    }
+
     [HttpGet("{userId:int}")]
     public async Task<IActionResult> UserById(int userId)
     {
@@ -39,10 +48,17 @@ public class UserController : ControllerBase
         return Ok(response);
     }
 
-    [HttpPost("Login")]
-    public async Task<IActionResult> Login([FromBody] LoginQuery query)
+    [HttpPut("Update")]
+    public async Task<IActionResult> UserUpdate([FromBody] UpdateUserCommand command)
     {
-        var response = await _mediator.Send(query);
+        var response = await _mediator.Send(command);
+        return Ok(response);
+    }
+
+    [HttpDelete("Delete/{userId:int}")]
+    public async Task<IActionResult> UserDelete(int userId)
+    {
+        var response = await _mediator.Send(new DeleteUserCommand() { UserId = userId });
         return Ok(response);
     }
 }

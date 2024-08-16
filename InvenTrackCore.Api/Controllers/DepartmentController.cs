@@ -3,6 +3,7 @@ using InvenTrackCore.Application.UseCases.Department.Commands.DeleteCommand;
 using InvenTrackCore.Application.UseCases.Department.Commands.UpdateCommand;
 using InvenTrackCore.Application.UseCases.Department.Queries.GetAllQuery;
 using InvenTrackCore.Application.UseCases.Department.Queries.GetByIdQuery;
+using InvenTrackCore.Application.UseCases.Department.Queries.GetSelectQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,13 @@ public class DepartmentController : ControllerBase
     public async Task<IActionResult> DeparmentList([FromQuery] GetAllDepartmentQuery query)
     {
         var response = await _mediator.Send(query);
+        return Ok(response);
+    }
+
+    [HttpGet("Select")]
+    public async Task<IActionResult> DepartmentSelect()
+    {
+        var response = await _mediator.Send(new GetSelectDepartmentQuery());
         return Ok(response);
     }
 

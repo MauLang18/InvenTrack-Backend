@@ -3,6 +3,7 @@ using InvenTrackCore.Application.UseCases.Location.Commands.DeleteCommand;
 using InvenTrackCore.Application.UseCases.Location.Commands.UpdateCommand;
 using InvenTrackCore.Application.UseCases.Location.Queries.GetAllQueries;
 using InvenTrackCore.Application.UseCases.Location.Queries.GetByIdQueries;
+using InvenTrackCore.Application.UseCases.Location.Queries.GetSelectQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,13 @@ public class LocationController : ControllerBase
     public async Task<IActionResult> LocationList([FromQuery] GetAllLocationQuery query)
     {
         var response = await _mediator.Send(query);
+        return Ok(response);
+    }
+
+    [HttpGet("Select")]
+    public async Task<IActionResult> LocationSelect()
+    {
+        var response = await _mediator.Send(new GetSelectLocationQuery());
         return Ok(response);
     }
 

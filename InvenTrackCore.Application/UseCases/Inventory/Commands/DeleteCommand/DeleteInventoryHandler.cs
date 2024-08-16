@@ -32,7 +32,9 @@ public class DeleteInventoryHandler : IRequestHandler<DeleteInventoryCommand, Ba
                 return response;
             }
 
-            await _fileStorageService.RemoveFile(existsInventory.Image!, Containers.INVENTORY);
+            if (existsInventory.Image is not null)
+                await _fileStorageService.RemoveFile(existsInventory.Image!, Containers.INVENTORY);
+
             await _unitOfWork.Inventory.DeleteAsync(request.InventoryId);
             await _unitOfWork.SaveChangesAsync();
 

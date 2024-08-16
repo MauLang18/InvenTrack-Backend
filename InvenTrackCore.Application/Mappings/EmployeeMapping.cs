@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InvenTrackCore.Application.Commons.Select.Response;
 using InvenTrackCore.Application.Dtos.Employee.Response;
 using InvenTrackCore.Application.UseCases.Employee.Commands.CreateCommand;
 using InvenTrackCore.Application.UseCases.Employee.Commands.UpdateCommand;
@@ -16,6 +17,11 @@ public class EmployeeMapping : Profile
             .ForMember(x => x.Location, x => x.MapFrom(y => y.Locations.Name))
             .ForMember(x => x.Department, x => x.MapFrom(y => y.Departments.Name))
             .ForMember(x => x.StateEmployee, x => x.MapFrom(y => y.State.Equals((int)StateTypes.Activo) ? "ACTIVO" : "INACTIVO"))
+            .ReverseMap();
+
+        CreateMap<Employee, SelectResponse>()
+            .ForMember(x => x.Id, x => x.MapFrom(y => y.Id))
+            .ForMember(x => x.Description, x => x.MapFrom(y => y.Name + " " + y.LastName))
             .ReverseMap();
 
         CreateMap<Employee, EmployeeByIdResponseDto>()

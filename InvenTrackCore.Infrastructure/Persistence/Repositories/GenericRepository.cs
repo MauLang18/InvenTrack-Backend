@@ -1,6 +1,7 @@
 ﻿using InvenTrackCore.Application.Interfaces.Persistence;
 using InvenTrackCore.Domain.Entities;
 using InvenTrackCore.Infrastructure.Persistence.Context;
+using InvenTrackCore.Utilities.Static;
 using Microsoft.EntityFrameworkCore;
 
 namespace InvenTrackCore.Infrastructure.Persistence.Repositories;
@@ -27,13 +28,25 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         var response = await _entity
             .Where(x => x.AuditDeleteUser == null && x.AuditDeleteDate == null)
+            .AsNoTracking()
             .ToListAsync();
         return response;
+    }
+
+    public async Task<IEnumerable<T>> GetSelectAsync()
+    {
+        var getAll = await _entity
+            .Where(x => x.State.Equals((int)StateTypes.Activo) && x.AuditDeleteUser == null && x.AuditDeleteDate == null)
+            .AsNoTracking()
+            .ToListAsync();
+
+        return getAll;
     }
 
     public async Task<T> GetByIdAsync(int id)
     {
         var response = await _entity
+            .AsNoTracking()
             .SingleOrDefaultAsync(x => x.Id == id &&
             x.AuditDeleteUser == null && x.AuditDeleteDate == null);
         return response!;

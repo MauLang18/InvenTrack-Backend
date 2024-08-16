@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InvenTrackCore.Application.Commons.Select.Response;
 using InvenTrackCore.Application.Dtos.Location.Response;
 using InvenTrackCore.Application.UseCases.Location.Commands.CreateCommand;
 using InvenTrackCore.Application.UseCases.Location.Commands.UpdateCommand;
@@ -14,6 +15,11 @@ public class LocationMapping : Profile
         CreateMap<Location, LocationResponseDto>()
             .ForMember(x => x.LocationId, x => x.MapFrom(y => y.Id))
             .ForMember(x => x.StateLocate, x => x.MapFrom(y => y.State.Equals((int)StateTypes.Activo) ? "ACTIVO" : "INACTIVO"))
+            .ReverseMap();
+
+        CreateMap<Location, SelectResponse>()
+            .ForMember(x => x.Id, x => x.MapFrom(y => y.Id))
+            .ForMember(x => x.Description, x => x.MapFrom(y => y.Name))
             .ReverseMap();
 
         CreateMap<Location, LocationByIdResponseDto>()

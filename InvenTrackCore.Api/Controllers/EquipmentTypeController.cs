@@ -3,6 +3,7 @@ using InvenTrackCore.Application.UseCases.EquipmentType.Commands.DeleteCommand;
 using InvenTrackCore.Application.UseCases.EquipmentType.Commands.UpdateCommand;
 using InvenTrackCore.Application.UseCases.EquipmentType.Queries.GetAllQuery;
 using InvenTrackCore.Application.UseCases.EquipmentType.Queries.GetByIdQuery;
+using InvenTrackCore.Application.UseCases.EquipmentType.Queries.GetSelectQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,13 @@ public class EquipmentTypeController : ControllerBase
     public async Task<IActionResult> EquipmentTypeList([FromQuery] GetAllEquipmentTypeQuery query)
     {
         var response = await _mediator.Send(query);
+        return Ok(response);
+    }
+
+    [HttpGet("Select")]
+    public async Task<IActionResult> EquipmentTypeSelect()
+    {
+        var response = await _mediator.Send(new GetSelectEquipmentTypeQuery());
         return Ok(response);
     }
 

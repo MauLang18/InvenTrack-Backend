@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InvenTrackCore.Application.Commons.Select.Response;
 using InvenTrackCore.Application.Dtos.EquipmentType.Response;
 using InvenTrackCore.Application.UseCases.EquipmentType.Commands.CreateCommand;
 using InvenTrackCore.Application.UseCases.EquipmentType.Commands.UpdateCommand;
@@ -14,6 +15,11 @@ public class EquipmentTypeMapping : Profile
         CreateMap<EquipmentType, EquipmentTypeResponseDto>()
             .ForMember(x => x.EquipmentTypeId, x => x.MapFrom(y => y.Id))
             .ForMember(x => x.StateEquipmentType, x => x.MapFrom(y => y.State.Equals((int)StateTypes.Activo) ? "ACTIVO" : "INACTIVO"))
+            .ReverseMap();
+
+        CreateMap<EquipmentType, SelectResponse>()
+            .ForMember(x => x.Id, x => x.MapFrom(y => y.Id))
+            .ForMember(x => x.Description, x => x.MapFrom(y => y.Name))
             .ReverseMap();
 
         CreateMap<EquipmentType, EquipmentTypeByIdResponseDto>()

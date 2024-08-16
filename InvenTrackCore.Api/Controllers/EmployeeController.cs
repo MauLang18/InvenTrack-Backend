@@ -1,4 +1,5 @@
-﻿using InvenTrackCore.Application.UseCases.Employee.Commands.CreateCommand;
+﻿using InvenTrackCore.Application.UseCases.Department.Queries.GetSelectQuery;
+using InvenTrackCore.Application.UseCases.Employee.Commands.CreateCommand;
 using InvenTrackCore.Application.UseCases.Employee.Commands.DeleteCommand;
 using InvenTrackCore.Application.UseCases.Employee.Commands.UpdateCommand;
 using InvenTrackCore.Application.UseCases.Employee.Queries.GetAllQuery;
@@ -23,6 +24,13 @@ public class EmployeeController : ControllerBase
     public async Task<IActionResult> EmployeeList([FromQuery] GetAllEmployeeQuery query)
     {
         var response = await _mediator.Send(query);
+        return Ok(response);
+    }
+
+    [HttpGet("Select")]
+    public async Task<IActionResult> EmployeeSelect()
+    {
+        var response = await _mediator.Send(new GetSelectDepartmentQuery());
         return Ok(response);
     }
 

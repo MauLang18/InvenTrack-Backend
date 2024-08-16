@@ -64,7 +64,8 @@ public class FileStorageService : IFileStorageService
 
     private static async Task<string> EditFileAsync(string container, IFormFile file, string route, string webRootPath, string scheme, string host)
     {
-        await RemoveFileAsync(route, container, webRootPath);
+        if (route is not null)
+            await RemoveFileAsync(route, container, webRootPath);
 
         return await SaveFileAsync(container, file, webRootPath, scheme, host);
     }

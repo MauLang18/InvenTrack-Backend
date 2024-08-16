@@ -4,6 +4,7 @@ using InvenTrackCore.Application.Interfaces.Services;
 using InvenTrackCore.Utilities.Static;
 using MediatR;
 using WatchDog;
+using Entity = InvenTrackCore.Domain.Entities;
 
 namespace InvenTrackCore.Application.UseCases.Inventory.Commands.UpdateCommand;
 
@@ -35,12 +36,17 @@ public class UpdateInventoryHandler : IRequestHandler<UpdateInventoryCommand, Ba
                 return response;
             }
 
-            _mapper.Map(request, existInventory);
+            var inventory = _mapper.Map<Entity.Inventory>(request);
+            inventory.Id = request.InventoryId;
+            inventory.Code = existInventory.Code;
+            inventory.Active = existInventory.Active;
 
             if (request.Image is not null)
-                existInventory.Image = await _fileStorageService.EditFile(Containers.INVENTORY, request.Image, existInventory.Image!);
+                inventory.Image = await _fileStorageService.EditFile(Containers.INVENTORY, request.Image, existInventory.Image!);
+            else
+                inventory.Image = existInventory.Image;
 
-            _unitOfWork.Inventory.UpdateAsync(existInventory);
+            _unitOfWork.Inventory.UpdateAsync(inventory);
             await _unitOfWork.SaveChangesAsync();
 
             response.IsSuccess = true;

@@ -89,7 +89,7 @@ namespace InvenTrackCore.Infrastructure.Services
                         column.Item().Text("Descripción de equipos:").Bold();
                         column.Item().Text(ticket!.Details ?? "N/A");
 
-                        if (ticket.TicketDetails != null && ticket.TicketDetails.Count == 0)
+                        if (ticket.TicketDetails != null && ticket.TicketDetails.Count > 0)
                         {
                             column.Item().PaddingVertical(15).Table(table =>
                             {
