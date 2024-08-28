@@ -14,7 +14,7 @@ public class LocationMapping : Profile
     {
         CreateMap<Location, LocationResponseDto>()
             .ForMember(x => x.LocationId, x => x.MapFrom(y => y.Id))
-            .ForMember(x => x.StateLocate, x => x.MapFrom(y => y.State.Equals((int)StateTypes.Activo) ? "ACTIVO" : "INACTIVO"))
+            .ForMember(x => x.StateLocation, x => x.MapFrom(y => y.State.Equals((int)StateTypes.Activo) ? "ACTIVO" : "INACTIVO"))
             .ReverseMap();
 
         CreateMap<Location, SelectResponse>()

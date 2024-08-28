@@ -7,5 +7,5 @@ public class LocationResponseDto
     public string Address { get; set; } = null!;
     public DateTime AuditCreateDate { get; set; }
     public int State { get; set; }
-    public string StateLocate { get; set; } = null!;
+    public string StateLocation { get; set; } = null!;
 }
